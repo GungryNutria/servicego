@@ -1,0 +1,48 @@
+Widget _menu() {
+  return Drawer(
+      child: ListView(
+    padding: EdgeInsets.zero,
+    children: <Widget>[
+      DrawerHeader(
+        decoration: BoxDecoration(color: HexColor('#ff0000')),
+        child: Text(
+          'Header',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text('Home'),
+        onTap: () {},
+      )
+    ],
+  ));
+}
+
+Widget _body() {
+  return Container(
+    padding: EdgeInsets.all(5.0),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+        color: Colors.white),
+    child: BlocBuilder<MyUbicationBloc, MyUbicationState>(
+        builder: (_, state) => createMap(state)),
+  );
+}
+
+Widget createMap(MyUbicationState state) {
+  if (!state.existUbication) return Text('Localizando...');
+
+  final mapBloc = BlocProvider.of<MapaBloc>(context);
+  mapBloc.add(OnNewUbication(state.ubication));
+  final camaraPosition = new CameraPosition(target: state.ubication, zoom: 15);
+  return GoogleMap(
+    initialCameraPosition: camaraPosition,
+    myLocationEnabled: true,
+    myLocationButtonEnabled: false,
+    zoomControlsEnabled: false,
+    onMapCreated: mapBloc.initMap,
+    polylines: mapBloc.state.polylines.values.toSet(),
+  );
+}
