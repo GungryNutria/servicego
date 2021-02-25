@@ -67,6 +67,10 @@ class _AccessPageState extends State<AccessPage> with WidgetsBindingObserver {
       case PermissionStatus.permanentlyDenied:
       case PermissionStatus.undetermined:
         openAppSettings();
+        break;
+      case PermissionStatus.limited:
+        // TODO: Handle this case.
+        break;
     }
   }
 }

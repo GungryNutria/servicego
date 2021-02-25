@@ -15,8 +15,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black);
 
   void _onItemTapped(int index) {
     setState(() {
@@ -24,70 +25,154 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  List<Widget> _widgetOptions = <Widget>[
-    _home(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: School',
-      style: optionStyle,
-    ),
-  ];
+  List<Widget> getDisplay(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      _home(context),
+      Text(
+        'Index 2: School',
+        style: optionStyle,
+      ),
+      Text(
+        'Index 3: School',
+        style: optionStyle,
+      ),
+    ];
+    return _widgetOptions;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: HexColor('#ff0000'),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Scaffold(
-              body: _widgetOptions.elementAt(_selectedIndex),
-              bottomNavigationBar: BottomNavigationBar(
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.assignment_turned_in),
-                    label: 'servicios',
-                  ),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.search), label: 'Buscar'),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_box_rounded),
-                    label: 'Cuenta',
-                  ),
+    return Scaffold(
+        backgroundColor: HexColor('#F1F1F1'),
+        body: Stack(
+          children: [getDisplay(context).elementAt(_selectedIndex)],
+        ),
+        bottomNavigationBar: _bottomMenu());
+  }
+
+  static Widget _home(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SafeArea(
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(left: 15.0),
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        'ServiceGo',
+                        style: optionStyle,
+                      )),
+                  Container(
+                    margin: EdgeInsets.only(right: 15.0),
+                    alignment: Alignment.bottomRight,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.location_on,
+                        color: Colors.black,
+                        size: 30.0,
+                      ),
+                    ),
+                  )
                 ],
-                unselectedItemColor: Colors.grey[500],
-                currentIndex: _selectedIndex,
-                selectedItemColor: HexColor('#ff0000'),
-                onTap: _onItemTapped,
               ),
-            )
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: 5.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _option('opcion1', 'Llanta'),
+                  _option('opcion2', 'Grua'),
+                  _option('opcion3', 'Lavado'),
+                  _option('opcion4', 'Servicio'),
+                  _option('opcion4', 'Servicio')
+                ],
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20.0),
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 10.0),
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Recientes',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+                _compra('opcion1', 'Cambio de Neumatico a domicilio', '150.00'),
+                _compra('opcion2', 'Solicitud de grua', '200.0'),
+                _compra('opcion3', 'Lavado de Auto tamaño mediano', '100.0'),
+                _compra('opcion4', 'Servicio Automotriz a domicilio', '200.0'),
+                _compra('opcion2', 'Solicitud de grua', '200.0'),
+                _compra('opcion2', 'Solicitud de grua', '200.0'),
+                _compra('opcion2', 'Solicitud de grua', '200.0'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget _option(String opcion, String text) {
+    return FlatButton(
+        onPressed: () {},
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage('assets/$opcion.png'),
+              width: 50.0,
+            ),
+            Text(text)
           ],
         ));
   }
 
-  static Widget _home() {
-    return CustomScrollView(slivers: [
-      SliverAppBar(
-        elevation: 2.0,
-        backgroundColor: HexColor('#ff0000'),
-        expandedHeight: 100.0,
-        floating: false,
-        pinned: true,
-        flexibleSpace: FlexibleSpaceBar(
-            centerTitle: true,
-            titlePadding: EdgeInsets.all(0.0),
-            title: Text('ServiceGo')),
-      )
-    ]);
+  Widget _bottomMenu() {
+    return BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Buscar'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_box_rounded),
+          label: 'Cuenta',
+        ),
+      ],
+      unselectedItemColor: Colors.grey[500],
+      currentIndex: _selectedIndex,
+      selectedItemColor: HexColor('#171717'),
+      onTap: _onItemTapped,
+    );
+  }
+
+  static Widget _compra(String opcion, String descripcion, String monto) {
+    return Container(
+      margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0), color: Colors.white),
+      child: ListTile(
+        leading: Image(image: AssetImage('assets/$opcion.png')),
+        title: Text(descripcion),
+        trailing: Text(monto),
+      ),
+    );
   }
 }
