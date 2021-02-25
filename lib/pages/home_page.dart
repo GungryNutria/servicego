@@ -32,10 +32,7 @@ class _HomePageState extends State<HomePage> {
         'Index 2: School',
         style: optionStyle,
       ),
-      Text(
-        'Index 3: School',
-        style: optionStyle,
-      ),
+      _account()
     ];
     return _widgetOptions;
   }
@@ -171,7 +168,113 @@ class _HomePageState extends State<HomePage> {
       child: ListTile(
         leading: Image(image: AssetImage('assets/$opcion.png')),
         title: Text(descripcion),
-        trailing: Text(monto),
+        trailing: FlatButton(
+            onPressed: () {},
+            child: Text('Ver Detalles'),
+            color: Colors.black,
+            textColor: Colors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0))),
+      ),
+    );
+  }
+
+  Widget _account() {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Positioned(
+                    child: Container(
+                  color: Colors.white,
+                  child: ListTile(
+                    title: Text('Edgardo Reyes'),
+                    leading: Icon(
+                      Icons.account_circle,
+                      size: 30.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                ))
+              ],
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text('COVID-19 Centro de seguridad'),
+                    leading: Icon(
+                      Icons.shield,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text('Mis carros'),
+                    leading: Icon(
+                      Icons.car_rental,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text('Pago'),
+                    leading: Icon(
+                      Icons.credit_card_outlined,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text('Direcciones'),
+                    leading: Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text('Tus favoritos'),
+                    leading: Icon(
+                      Icons.star_border,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text('Configuración'),
+                    leading: Icon(
+                      Icons.settings_outlined,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text('Ayuda'),
+                    leading: Icon(
+                      Icons.help_outline_outlined,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
