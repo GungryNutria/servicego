@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:servicego/bloc/my_map/mapa_bloc.dart';
-import 'package:servicego/bloc/my_ubication/my_ubication_bloc.dart';
 import 'package:servicego/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
