@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:servicego/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -13,6 +10,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  var locationMessage = "";
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black);
@@ -91,7 +89,6 @@ class _HomePageState extends State<HomePage> {
                   _option('opcion2', 'Grua'),
                   _option('opcion3', 'Lavado'),
                   _option('opcion4', 'Servicio'),
-                  _option('opcion4', 'Servicio')
                 ],
               ),
             ),
@@ -124,7 +121,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   static Widget _option(String opcion, String text) {
-    return FlatButton(
+    return TextButton(
         onPressed: () {},
         child: Column(
           children: [
@@ -132,7 +129,10 @@ class _HomePageState extends State<HomePage> {
               image: AssetImage('assets/$opcion.png'),
               width: 50.0,
             ),
-            Text(text)
+            Text(
+              text,
+              style: TextStyle(color: Colors.black),
+            )
           ],
         ));
   }
@@ -166,13 +166,17 @@ class _HomePageState extends State<HomePage> {
       child: ListTile(
         leading: Image(image: AssetImage('assets/$opcion.png')),
         title: Text(descripcion),
-        trailing: FlatButton(
-            onPressed: () {},
-            child: Text('Ver Detalles'),
-            color: Colors.black,
-            textColor: Colors.white,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0))),
+        trailing: TextButton(
+          onPressed: () {},
+          child: Text(
+            'Ver Detalles',
+            style: TextStyle(color: Colors.white),
+          ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.black),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0)))),
+        ),
       ),
     );
   }
@@ -221,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                       size: 30.0,
                     ),
-                    onTap: () {},
+                    onTap: () => Navigator.pushNamed(context, 'mycars'),
                   ),
                   ListTile(
                     title: Text('Pago'),

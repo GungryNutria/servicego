@@ -22,45 +22,45 @@ class _LoginPageState extends State<LoginPage> {
   Widget _body() {
     return SafeArea(
       child: Center(
-        child: ListView(
-          children: [
-            Container(
-                margin: EdgeInsets.only(top: 20),
-                child: Image.asset(
-                  'assets/logo.png',
-                  height: 300,
-                  width: 300,
-                )),
-            Container(
-                child: Form(
-              key: _formKey,
-              child: Container(
-                margin: EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    _email(),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    _password(),
-                    _forgotPassword(),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    _loginbutton(),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Text('Ó'),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    _registerButton()
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: Image.asset(
+                    'assets/logo.png',
+                  )),
+              Container(
+                  child: Form(
+                key: _formKey,
+                child: Container(
+                  margin: EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      _email(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _password(),
+                      _forgotPassword(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _loginbutton(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Text('Ó'),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _registerButton()
+                    ],
+                  ),
                 ),
-              ),
-            ))
-          ],
+              ))
+            ],
+          ),
         ),
       ),
     );
@@ -74,10 +74,10 @@ class _LoginPageState extends State<LoginPage> {
             filled: true,
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
-                borderSide: BorderSide(color: HexColor('#ff0000'))),
+                borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
-                borderSide: BorderSide(color: HexColor('#ff0000'))),
+                borderSide: BorderSide(color: Colors.amber[800])),
             hintText: 'Correo Electronico'),
       ),
     );
@@ -92,10 +92,10 @@ class _LoginPageState extends State<LoginPage> {
             filled: true,
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
-                borderSide: BorderSide(color: HexColor('#ff0000'))),
+                borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
-                borderSide: BorderSide(color: HexColor('#ff0000'))),
+                borderSide: BorderSide(color: Colors.amber[800])),
             hintText: 'Contrasaeña'),
       ),
     );
@@ -107,10 +107,10 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         Text('¿Olvidaste tu Contraseña?'),
         Container(
-          child: FlatButton(
+          child: TextButton(
             child: Text(
               'Click Aqui',
-              style: TextStyle(color: HexColor('#ff0000')),
+              style: TextStyle(color: Colors.amber[800]),
             ),
             onPressed: () {},
           ),
@@ -123,15 +123,16 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       width: double.infinity,
       height: 45.0,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.black),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)))),
         child: Text(
           'Iniciar Sesion',
           textAlign: TextAlign.center,
           style: TextStyle(color: HexColor('#FFFFFF')),
         ),
-        shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(50.0)),
-        color: HexColor('#ff0000'),
         onPressed: () {
           Navigator.pushReplacementNamed(context, 'home');
         },
@@ -143,15 +144,16 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       width: double.infinity,
       height: 45.0,
-      child: RaisedButton(
+      child: ElevatedButton(
         child: Text(
           'Registrarme',
           textAlign: TextAlign.center,
           style: TextStyle(color: HexColor('#FFFFFF')),
         ),
-        shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(50.0)),
-        color: HexColor('#ff0000'),
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.black),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)))),
         onPressed: () => Navigator.pushNamed(context, 'register'),
       ),
     );
