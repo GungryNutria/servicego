@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:servicego/pages/services_page.dart';
 import 'package:servicego/pages/home_page.dart';
 import 'package:servicego/pages/login_page.dart';
 import 'package:servicego/pages/mycars_page.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         'home': (BuildContext context) => HomePage(),
         'register': (BuildContext contesxt) => RegisterPage(),
         'mycars': (BuildContext context) => MyCarPage(),
-        'newcar': (BuildContext context) => NewCarPage()
+        'newcar': (BuildContext context) => NewCarPage(),
+        'services': (BuildContext context) => ServicesPage()
       },
     );
   }
