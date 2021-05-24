@@ -80,18 +80,15 @@ class ServicesPage extends StatelessWidget {
     return Table(
       children: [
         TableRow(children: [
-          _createButton(Colors.white, Icons.car_repair, 'Servicio'),
-          _createButton(Colors.white, Icons.directions_bus, 'Grua')
+          _createButton(
+              Colors.white, Icons.car_repair, 'Servicio de Mantenimiento'),
+          _createButton(Colors.white, Icons.rv_hookup, 'Servicio de Grua')
         ]),
         TableRow(children: [
-          _createButton(Colors.white, Icons.whatshot_rounded, 'Lavado de Auto'),
-          _createButton(
-              Colors.white, Icons.radio_button_on_rounded, 'Cambio de Llanta')
-        ]),
-        TableRow(children: [
-          _createButton(
-              Colors.white, Icons.miscellaneous_services_sharp, 'Mi Banco'),
-          _createButton(Colors.white, Icons.account_box, 'Mi Perfil')
+          _createButton(Colors.white, Icons.whatshot_rounded,
+              'Servicio de Lavado de Auto'),
+          _createButton(Colors.white, Icons.radio_button_on_rounded,
+              'Servicio de Cambio de Llanta')
         ]),
       ],
     );
